@@ -5,7 +5,7 @@ package com.example.isaac.weatherapp.info;
  */
 
 public class InfoSupport {
-    private String locationCodes[][] =
+    private static String locationCodes[][] =
         {
             {"Mexico City","3530597"},
             {"Paris", "2968815"},
@@ -14,7 +14,7 @@ public class InfoSupport {
             {"London", "2643744"}
         };
 
-    public String getCodeFromLocation (String location) {
+    public static String getCodeFromLocation (String location) {
         for (int i=0; i<locationCodes.length; i++) {
             String city = locationCodes[i][0];
             String code = locationCodes[i][1];
