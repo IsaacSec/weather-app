@@ -5,11 +5,12 @@ import android.os.Bundle;
 
 public class WeatherActivity extends AppCompatActivity {
 
+    private String location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
-
-        System.out.println("Intent Data: " + this.getIntent().getStringExtra("location"));
+        location = this.getIntent().getStringExtra("location");
     }
 }
