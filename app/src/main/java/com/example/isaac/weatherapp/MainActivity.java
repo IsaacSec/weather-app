@@ -1,5 +1,6 @@
 package com.example.isaac.weatherapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.SpinnerAdapter;
 public class MainActivity extends AppCompatActivity {
 
     private Spinner locationSpinner;
+    private boolean hasChanged = false;
     private String[] locations = {"Mexico  City", "Paris", "Madrid", "Caracas", "London"};
 
     @Override
@@ -27,15 +29,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupLocationSpinner () {
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, locations);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, locations);
 
         locationSpinner.setAdapter(spinnerAdapter);
 
-        locationSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+                System.out.println();
+                if (!hasChanged) {
+                    hasChanged = true;
+                    return;
+                }
 
+                Intent weatherActivity = new Intent(MainActivity.this, WeatherActivity.class);
+                String selected = (String) adapterView.getItemAtPosition(pos);
+                weatherActivity.putExtra("location", selected);
+                startActivity(weatherActivity);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // Nothing
             }
         });
+
     }
 }

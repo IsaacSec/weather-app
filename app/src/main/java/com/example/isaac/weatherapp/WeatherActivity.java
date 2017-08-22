@@ -9,5 +9,7 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
+
+        System.out.println("Intent Data: " + this.getIntent().getStringExtra("location"));
     }
 }
