@@ -7,7 +7,7 @@ package com.example.isaac.weatherapp.info;
 public class InfoSupport {
     private static String locationCodes[][] =
         {
-            {"Mexico City","3530597"},
+            {"Mexico","3530597"},
             {"Paris", "2968815"},
             {"Madrid", "6359304"},
             {"Caracas", "3646738"},

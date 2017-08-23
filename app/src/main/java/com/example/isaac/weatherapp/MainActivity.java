@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Spinner locationSpinner;
     private boolean hasChanged = false;
-    private String[] locations = {"Mexico  City", "Paris", "Madrid", "Caracas", "London"};
+    private String[] locations = {"SELECT", "Mexico", "Paris", "Madrid", "Caracas", "London"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +36,19 @@ public class MainActivity extends AppCompatActivity {
         locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-                System.out.println();
+                System.out.println("Changed "+hasChanged);
                 if (!hasChanged) {
                     hasChanged = true;
                     return;
                 }
 
-                Intent weatherActivity = new Intent(MainActivity.this, WeatherActivity.class);
                 String selected = (String) adapterView.getItemAtPosition(pos);
+
+                if (selected.equals("SELECT")) {
+                    return;
+                }
+
+                Intent weatherActivity = new Intent(MainActivity.this, WeatherActivity.class);
                 weatherActivity.putExtra("location", selected);
                 startActivity(weatherActivity);
             }
